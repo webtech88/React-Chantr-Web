@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+# use s6 to exit the container
+s6-svscanctl -t /var/run/s6/services

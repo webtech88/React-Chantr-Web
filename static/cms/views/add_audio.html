@@ -1,0 +1,45 @@
+<form role="form" name="form.audioForm" ng-submit="uploadAudio(recording)" novalidate>
+
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label class="btn btn-default btn-file">
+        <input
+          type="file"
+          ngf-select
+          ng-model="recording"
+          name="recording"
+          ngf-pattern="'audio/*'"
+          ngf-max-size="10MB"
+          ngf-model-invalid="errorFile" />
+      </label>
+      <a class="fa fa-times fa-lg" href ng-click="recording = null" ng-show="recording"> </a>
+    </div>
+
+    <div class="form-group" ng-show="form.audioForm.recording.$error.pattern">
+      <i class="text-danger">
+        *Invalid File Type. Only 'audio' file type is supported
+        <br>
+      </i>
+    </div>
+
+    <div class="form-group" ng-show="form.audioForm.recording.$error.required">
+      <i class="text-danger">
+        *required
+        <br>
+      </i>
+    </div>
+    <div class="form-group" ng-show="form.audioForm.recording.$error.maxSize">
+      <i class="text-danger">File too large
+        {{errorFile.size / 1000000|number:1}}MB: max 10MB
+        <br>
+      </i>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.audioForm.$invalid">Submit</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

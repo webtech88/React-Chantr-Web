@@ -1,0 +1,105 @@
+html,
+body,
+document,
+div,
+a,
+td,
+tr,
+th,
+ta,
+tc,
+p,
+li,
+ul,
+b {
+  font-family: Arial;
+}
+pathx {
+  fill: none;
+  stroke: #000;
+  stroke-width: 0.0144;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.leftBar {
+  background-color: #595959;
+  display: flex;
+  position: fixed;
+  bottom: 0px;
+  width: 100% !important;
+  justify-content: space-around;
+  padding: 5px;
+  min-height: 54px;
+}
+.leftBar a {
+  display: inline-block;
+  width: 100%;
+  background-position: center;
+  margin: auto;
+  cursor: pointer;
+  text-align: center;
+  background-repeat: no-repeat;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5vw;
+  background-size: 100%;
+  margin: 0 !important;
+  height: auto !important;
+  width: auto !important;
+  min-width: 71px !important;
+  min-height: 59px !important;
+  background-size: contain;
+  font-size: 14px !important;
+  outline: none;
+}
+.leftBar a:hover {
+  opacity: 0.5;
+}
+
+.leftBar a:last-child{
+  display: flex;
+  align-items: center;
+}
+
+#svg_file_holder {
+  border: 8px solid #595959;
+
+  border-bottom:0px;
+}
+#color_picker {
+  background-color: #595959;
+  padding: 20px;
+  display: none;
+  position: fixed;
+  right: 0px !important;
+  top: 0px;
+}
+#color_picker a {
+  display: block;
+  height: 26px;
+  width: 26px;
+  margin: 10px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  cursor: pointer;
+  float: left;
+}
+#svg_file {
+  vertical-align: top;
+}
+#leftBar {
+  height: auto !important;
+}
+
+@media (max-width: 600px) {
+  .leftBar a {
+    min-height: 35px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media screen and (orientation:landscape) {
+  #svg_file_holder {
+    min-heightxx: 600px !important;
+  }
+}

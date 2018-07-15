@@ -1,0 +1,327 @@
+<div id="message" ng-show="serverError">
+  <div style="padding: 5px;">
+    <div id="inner-message" class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{errorMessage}}
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+
+  <div class="row equal m-h-324">
+
+    <div class="col-md-7" id="gift-details">
+
+      <div class="panel panel-default w-100">
+        <div class="panel-heading">
+          Details
+          <div class="pull-right">
+            <a
+              href
+              class="fa fa-edit fa-lg"
+              ng-click="editView = !editView"
+              ng-show="!editView"
+              tooltip="Click to edit gift details">
+            </a>
+          </div>
+        </div>
+        <div class="panel-body">
+
+
+          <!-- Details View -->
+          <ul class="list-group" ng-show="!editView">
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  Gift Type
+                </div>
+                <div class="col-md-2">
+                  {{ giftTypeTranslationMap[gift.cardType] }}
+                </div>
+
+                <div class="col-md-2"></div>
+
+                <div ng-show="gift.cardType === 'typeGiftCard'">
+                  <div class="col-md-2 text-bold">
+                    Provider
+                  </div>
+
+                  <div class="col-md-3">
+                    {{gift.provider}}
+                  </div>
+                </div>
+
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  Gift Description
+                </div>
+                <div class="col-md-9">
+                  {{gift.description}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item" ng-show="gift.amountTarget">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  Target Amount ($)
+                </div>
+                <div class="col-md-9">
+                  {{gift.amountTarget}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  Amount Contributed ($)
+                </div>
+                <div class="col-md-9">
+                  {{gift.amountCurrent || 0}}
+                </div>
+              </div>
+            </li>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  # Contributions
+                </div>
+                <div class="col-md-9">
+                  {{gift.amountContributions || 0}}
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  Payment Link
+                </div>
+                <div class="col-md-9">
+                  {{gift.payLink}}
+                </div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Edit View -->
+          <form
+            ng-show="editView"
+            name="form.editGiftForm"
+            ng-submit="createUpdateGift(gift)">
+            <!-- Type and provider -->
+            <div class="form-group row">
+              <label for="type" class="col-md-2 col-form-label">Gift Type</label>
+              <fieldset class="col-md-3">
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    name="type"
+                    ng-model="gift.cardType"
+                    value="typeGift">
+                    Stuff
+                </label>
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    name="type"
+                    ng-model="gift.cardType"
+                    value="typeGiftCard">
+                    Gift Card
+                    </label>
+              </fieldset>
+
+              <div class="col-md-2"></div>
+              <div ng-show="gift.cardType === 'typeGiftCard'">
+                <label for="provider" class="col-md-2 col-form-label">Provider</label>
+                <div class="col-md-3">
+                  <select
+                    name="provider"
+                    class="form-control"
+                    ng-model="gift.providerObject"
+                    ng-options="gift_card.provider_name for gift_card in gift_cards">
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Description -->
+            <div class="form-group row">
+              <label for="description" class="col-md-2 col-form-label">Gift Description</label>
+              <div class="col-md-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="description"
+                  ng-model="gift.description"
+                  placeholder="Enter Gift Description">
+              </div>
+            </div>
+
+            <!-- Target Amount and Fixed Limit or No Limit -->
+            <div class="form-group row">
+              <label for="type" class="col-md-2 col-form-label">Amount Settings</label>
+              <fieldset class="col-md-3">
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    name="limit-type"
+                    ng-model="gift.targetAmountType"
+                    value="fixed"
+                    >
+                    Fixed Limit
+                </label>
+                <label class="radio-inline">
+                  <input
+                    type="radio"
+                    name="limit-type"
+                    ng-model="gift.targetAmountType"
+                    value="no_limit">
+                    No Limit
+                    </label>
+              </fieldset>
+
+              <div class="col-md-2"></div>
+              <div ng-show="gift.targetAmountType === 'fixed'">
+                <label for="amountTarget" class="col-md-3 col-form-label text-right">Target Amount ($)</label>
+                <div class="col-md-2">
+                  <input
+                    type="number"
+                    min="1"
+                    ng-model="gift.amountTarget"
+                    class="form-control"
+                    id="amountTarget"
+                    placeholder="Target Amount">
+                </div>
+              </div>
+            </div>
+
+            <!-- Payment Link -->
+            <div class="form-group row">
+              <label for="payLink" class="col-md-2 col-form-label">Payment URL</label>
+              <div class="col-md-10">
+                <input
+                  type="text"
+                  class="form-control"
+                  ng-model="gift.payLink"
+                  id="payLink"
+                  placeholder="Enter direct link for payments">
+              </div>
+            </div>
+
+            <!-- initial contribution -->
+            <div class="form-group row" ng-show="!gift.id">
+              <label for="amountCurrent" class="col-md-2 col-form-label">Initial Contribution ($)</label>
+              <div class="col-md-10">
+                <input
+                  type="number"
+                  min="0"
+                  max="gift.amountTarget"
+                  class="form-control"
+                  ng-model="gift.amountCurrent"
+                  id="amountCurrent"
+                  placeholder="Enter an initial contribution (by card creator)">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <div class="col-md-3"></div>
+              <button
+                type="submit"
+                class="btn btn-primary col-md-2"
+                ng-disabled="form.editGiftForm.$pristine">
+                Submit
+              </button>
+              <div class="col-md-1"></div>
+              <button
+                type="button"
+                class="btn btn-warning col-md-2"
+                ng-click="cancel()"
+                ng-show="gift.id">
+                Cancel
+              </button>
+              <div class="col-md-3"></div>
+            </div>
+
+          </form>
+
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-5" id="gift-image">
+      <div class="panel panel-default w-100">
+        <div class="panel-body">
+          <img
+            src="../data/gifts/{{gift_id}}/photo.jpg?xversion={{random}}"
+            class="img-responsive center-block cover-image"
+            tooltip="Click to change gift image"
+            ng-click="showGiftImageUploadModal()"
+            ng-show="gift.photoUrl" />
+
+          <button
+            type="button"
+            class="btn btn-default btn-lg center-block pagination-centered vertical-middle"
+            tooltip="Click to add gift image"
+            ng-click="showGiftImageUploadModal()"
+            ng-show="!gift.photoUrl && gift.id">
+            Add Image
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <table st-table="gift_contributions" st-pipe="callServer" class="table table-striped">
+      <thead>
+
+<!--         <tr>
+          <th colspan="8">
+            <input st-search="" class="form-control" placeholder="search by ..." type="text"/>
+          </th>
+
+          <th colspan="5">
+          </th>
+
+          <th colspan="2">
+            <b>#rows per page</b>
+            <select name="numRows" class="form-control" ng-model="numRows" ng-options="size for size in page_sizes"> </select>
+          </th>
+
+        </tr>
+ -->
+        <tr>
+          <th st-sort="id">ID</th>
+          <th st-sort="featured">Username</th>
+          <th st-sort="title">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="row in gift_contributions">
+          <td>{{row.id}}</td>
+          <td>{{row.username}}</td>
+          <td>{{row.amount}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="12" class="text-center">
+            <div st-pagination="" st-items-by-page="numRows" st-displayed-pages="10"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+
+  </div>
+</div>
+
+

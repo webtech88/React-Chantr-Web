@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WishYoo - CMS</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/dist/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/cms/css/simple-sidebar.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<!-- <body> -->
+<body id="bodycms" ng-app="wishyoocms" ng-controller="AdminController">
+
+
+    <div class="page-container" ng-show="currentUser">
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+           <div class="container-fluid">
+                <div class="navbar-header">
+
+                   <a class="navbar-brand" href="#">WishYoo CMS</a>
+                   <span><button a href="#menu-toggle" type="button" class="btn btn-default topnav-button" id="menu-toggle">
+                    toggle sidebar
+                   </button></span>
+
+                </div>
+
+
+                <span class="navbar-panel-name">
+
+                   <a class="navbar-text">{{panelName}}</a>
+
+                </span>
+
+
+                <ul class="pull-right nav">
+                    <li class="dropdown">
+                        <a href= class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-caret-down"></i></a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href ng-click="logout()">Logout</a></li>
+                            <li><a href ng-click="clearPreferences()">Clear Preferences</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+           </div>
+        </div>
+
+
+        <div class="container-fluid sidebar-and-content" id="wrapper">
+
+            <div class="row">
+                <!-- Sidebar -->
+                <div id="sidebar-wrapper">
+                    <ul class="sidebar-nav">
+                        <li>
+                            <a href="#/">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#/account_types">Account Types</a>
+                        </li>
+                        <li>
+                            <a href="#/users">Users</a>
+                        </li>
+                        <li>
+                            <a href="#/cards">Cards</a>
+                        </li>
+                        <li>
+                            <a href="#/deleted_cards">Deleted Cards</a>
+                        </li>
+                        <li>
+                            <a href="#/youtuber_cards">Youtuber Cards</a>
+                        </li>
+                        <li>
+                            <a href="#/gift_card_providers">Gift Card Providers</a>
+                        </li>
+                        <li>
+                            <a href="#/categories">Categories</a>
+                        </li>
+                        <li>
+                            <a href="#/unsubscribe">Unsubscribed Users</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /#sidebar-wrapper -->
+
+                <!-- Page Content -->
+                <div id="page-content-wrapper">
+                    <div class="container-fluid">
+                        <div ng-view>
+
+                        </div>
+
+                        <hr />
+
+
+                    </div>
+                </div>
+                <!-- /#page-content-wrapper -->
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+    <div ng-controller="LoginController"  ng-if="!currentUser">
+
+        <div ng-view ng-show="checkIfInsideLoginCtrl()">
+
+        </div>
+
+    </div>
+
+    <!-- /#wrapper -->
+
+    <!-- Angular -->
+    <script src="/static/dist/js/admin_bundle.js"></script>
+
+    <!--  Angular resources -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/AdminCtrl.js"></script>
+    <script src="js/controllers/DashboardCtrl.js"></script>
+    <script src="js/controllers/UserCtrl.js"></script>
+    <script src="js/controllers/NewUserCtrl.js"></script>
+    <script src="js/controllers/EditUserCtrl.js"></script>
+    <script src="js/controllers/AccountTypeCtrl.js"></script>
+    <script src="js/controllers/CardCtrl.js"></script>
+    <script src="js/controllers/ParticipantCtrl.js"></script>
+    <script src="js/controllers/BulkUploadCtrl.js"></script>
+    <script src="js/controllers/LoginCtrl.js"></script>
+    <script src="js/controllers/NewCardCtrl.js"></script>
+    <script src="js/controllers/CoverImageCtrl.js"></script>
+    <script src="js/controllers/GiftCtrl.js"></script>
+    <script src="js/controllers/GiftImageCtrl.js"></script>
+    <script src="js/controllers/GiftCardProviderCtrl.js"></script>
+    <script src="js/controllers/GiftCardProviderImageCtrl.js"></script>
+    <script src="js/controllers/GiftCardProviderImagePreviewCtrl.js"></script>
+    <script src="js/controllers/AudioCtrl.js"></script>
+    <script src="js/controllers/SignaturePreviewCtrl.js"></script>
+    <script src="js/controllers/UnsubscribeCtrl.js"></script>
+    <script src="js/controllers/UnsubscriptionCtrl.js"></script>
+    <script src="js/controllers/CategoryCtrl.js"></script>
+    <script src="js/controllers/ImagePreviewCtrl.js"></script>
+    <script src="js/controllers/MoveSignatureCtrl.js"></script>
+    <script src="js/controllers/YoutuberCtrl.js"></script>
+
+        <!-- Menu Toggle Script -->
+    <script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+
+
+</body>
+
+</html>

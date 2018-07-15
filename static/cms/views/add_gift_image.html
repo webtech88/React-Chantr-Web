@@ -1,0 +1,52 @@
+<form role="form" name="form.giftImageForm" ng-submit="uploadGiftImage(giftImage)" novalidate>
+
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label class="btn btn-default btn-file">
+        <input
+          type="file"
+          ngf-select
+          ng-model="giftImage"
+          name="giftImage"
+          ngf-resize="{
+                        quality: .8,
+                        type: 'image/jpeg',
+                        ratio: '1:1.5',
+                        restoreExif: false,
+                        centerCrop: true
+                      }"
+          ngf-pattern="'image/*'"
+          ngf-max-size="10MB"
+          ngf-model-invalid="errorFile" />
+      </label>
+      <a class="fa fa-times fa-lg" href ng-click="giftImage = null" ng-show="giftImage"> </a>
+    </div>
+
+    <div class="form-group" ng-show="form.giftImageForm.giftImage.$error.pattern">
+      <i class="text-danger">
+        *Invalid File Type. Only 'image' file type is supported
+        <br>
+      </i>
+    </div>
+
+    <div class="form-group" ng-show="form.giftImageForm.giftImage.$error.required">
+      <i class="text-danger">
+        *required
+        <br>
+      </i>
+    </div>
+    <div class="form-group" ng-show="form.giftImageForm.giftImage.$error.maxSize">
+      <i class="text-danger">File too large
+        {{errorFile.size / 1000000|number:1}}MB: max 10MB
+        <br>
+      </i>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.giftImageForm.$invalid">Submit</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

@@ -1,0 +1,45 @@
+<form role="form" name="form.imageForm" ng-submit="uploadImage(providerImage)" novalidate>
+
+  <div class="modal-body">
+
+    <div class="form-group">
+      <label class="btn btn-default btn-file">
+        <input
+          type="file"
+          ngf-select
+          ng-model="providerImage"
+          name="providerImage"
+          ngf-pattern="'image/jpeg'"
+          ngf-max-size="10MB"
+          ngf-model-invalid="errorFile" />
+      </label>
+      <a class="fa fa-times fa-lg" href ng-click="providerImage = null" ng-show="providerImage"> </a>
+    </div>
+
+    <div class="form-group" ng-show="form.imageForm.providerImage.$error.pattern">
+      <i class="text-danger">
+        *Invalid File Type. Only 'image/jpeg' file type is supported
+        <br>
+      </i>
+    </div>
+
+    <div class="form-group" ng-show="form.imageForm.providerImage.$error.required">
+      <i class="text-danger">
+        *required
+        <br>
+      </i>
+    </div>
+    <div class="form-group" ng-show="form.imageForm.providerImage.$error.maxSize">
+      <i class="text-danger">File too large
+        {{errorFile.size / 1000000|number:1}}MB: max 10MB
+        <br>
+      </i>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.imageForm.$invalid">Submit</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

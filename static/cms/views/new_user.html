@@ -1,0 +1,45 @@
+<form role="form" name="form.userForm" ng-submit="createUser()" novalidate>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input type="email" ng-model="newUser.email" name="email" class="form-control" id="email" required>
+      <p ng-show="form.userForm.email.$invalid && !form.userForm.email.$pristine" class="text-danger">Enter a valid email address.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input name="username" type="text" ng-model="newUser.username" class="form-control" id="username" required ng-minlength="3" ng-maxlength="20">
+      <p ng-show="form.userForm.username.$error.minlength" class="text-danger">Username is too short.</p>
+      <p ng-show="form.userForm.username.$error.maxlength" class="text-danger">Username is too long.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input name="password" type="password" ng-model="newUser.password" class="form-control" id="password" required ng-minlength="8">
+      <p ng-show="form.userForm.password.$error.minlength" class="text-danger">password must be at least 8 characters long.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password:</label>
+      <input name="confirmPassword" type="password" ng-model="newUser.confirmPassword" class="form-control" id="confirmPassword" required password-verify="{{newUser.password}}">
+      <p ng-show="form.userForm.confirmPassword.$invalid && !form.userForm.confirmPassword.$pristine" class="text-danger">Passwords do not match.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="campaign_user">Campaign User:</label>
+      <input name="campaign_user" type="checkbox" ng-model="newUser.campaign_user" class="checkbox-inline" id="campaign_user" />
+    </div>
+
+    <div class="form-group">
+      <label for="account_type">Account Type:</label>
+      <select name="account_type" class="form-control" ng-model="newUser.account_type" ng-options="account_type.type_name for account_type in account_types"> </select>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.userForm.$invalid">Create</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

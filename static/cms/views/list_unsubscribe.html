@@ -1,0 +1,72 @@
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2">
+      <button ng-click="editUnsubscription()" class="btn btn-sm btn-success">
+        Add New
+      </button>
+    </div>
+    <div class="col-md-4">
+      <accordion close-others="oneAtATime">
+        <accordion-group class="panel-default" heading="View Legend" is-open="legend.isFirstOpen" is-disabled="legend.isFirstDisabled">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">Options</div>
+              <div class="panel-body">
+                <ul class="list-group">
+                  <li class="list-group-item" ng-repeat="(value, name) in unsubscribeOptionsMap">
+                    <strong>{{value}}</strong> : {{name}}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+
+<hr />
+
+<div class="row">
+<table st-table="initialRows" class="table table-striped" st-safe-src="unsubscriptions">
+  <thead>
+    <tr>
+      <th class="col-md-2">
+        <input st-search="" placeholder="search" class="input-sm form-control" type="search"/>
+      </th>
+    </tr>
+
+    <tr>
+      <th st-sort="email" st-sort-default="true">Email</th>
+      <th st-sort="reason">Reason</th>
+      <th>Options</th>
+      <th>Last Updated</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in initialRows">
+    <td>{{row.email}}</td>
+    <td>{{row.reasonText}}</td>
+    <td>{{row.options}}</td>
+    <td>{{row.unsubscribe_on_dt | date}}</td>
+    <td>
+      <a href
+        tooltip="Remove Unsubscription"
+        ng-click="removeUnsubscription(row)">
+        <i class="fa fa-fw fa-lg fa-times"></i>
+      </a>
+      <a href
+        tooltip="Edit Unsubscription"
+        ng-click="editUnsubscription(row)">
+        <i class="fa fa-fw fa-lg fa-edit"></i>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+</div>

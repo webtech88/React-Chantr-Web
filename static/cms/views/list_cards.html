@@ -1,0 +1,207 @@
+<div id="message" ng-show="updateFailed">
+  <div style="padding: 5px;">
+    <div id="inner-message" class="alert alert-danger">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{errorMessage}}
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+
+<div class="row">
+
+  <accordion close-others="oneAtATime">
+    <accordion-group class="panel-default" heading="View Legend" is-open="legend.isFirstOpen" is-disabled="legend.isFirstDisabled">
+
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Category</div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="category in displayCategories">
+                <strong>{{category.short}}</strong> : {{category.long}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Status</div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="status in displayStatus">
+                <strong>{{status.short}}</strong> : {{status.long}}
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">Account Types</div>
+          <div class="panel-body">
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="type in displayTypes">
+                <strong>{{type.short}}</strong> : {{type.long}}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    </accordion-group>
+  </accordion>
+
+</div>
+
+<div class="row">
+
+<table
+  st-table="cards"
+  st-pipe="callServer"
+  default-sort-column="name"
+  st-persist="cards"
+  class="table table-striped">
+  <thead>
+  <tr>
+    <th colspan="8">
+      <input st-search="" class="form-control" placeholder="search by ..." type="text"/>
+    </th>
+
+    <th colspan="2">
+    </th>
+
+    <th colspan="2">
+      <button
+        class="btn btn-sm btn-danger"
+        id="delete-selected"
+        ng-show="selected.length && !deleted"
+        my-confirm-click="This will delete all the selected cards from the system. Are you sure you want to proceed?"
+        confirmed-click="deleteSelectedCards(selected)">
+        Delete Selected
+      </button>
+      <!-- undo delete will be disabled for now -->
+      <button
+        class="btn btn-sm btn-primary"
+        id="undelete-selected"
+        ng-show="selected.length && deleted && false"
+        ng-click="undeleteSelectedCards(selected)">
+        Undo Deletion
+      </button>
+    </th>
+
+
+    <th colspan="1">
+      <button
+        class="btn btn-sm btn-success"
+        id="create-card"
+        ng-show="!deleted"
+        ng-click="showCreateCardModal()">
+      <i class="glyphicon glyphicon-plus"> </i> Create Card
+      </button>
+    </th>
+
+    <th colspan="2">
+      <b>#rows per page</b> <select name="numRows" class="form-control" ng-model="numRows" ng-options="size for size in page_sizes"> </select>
+    </th>
+
+
+  </tr>
+  <tr>
+    <th row-select-all="cards" selected="selected" ng-click="selectAll(cards)" ng-show="!deleted"></th>
+    <th st-sort="id">ID</th>
+    <th st-sort="featured">Featured</th>
+    <th st-sort="title">Title</th>
+    <th st-sort="category">Ctgy</th>
+    <th st-sort="status">Sts</th>
+    <th st-sort="username">Username</th>
+    <th st-sort="campaign_user">CU</th>
+    <th st-sort="label">Label</th>
+    <th st-sort="type_name">Type</th>
+    <th st-sort="createdAt">Created At</th>
+    <th st-sort="dueDate">Due Date</th>
+    <th st-sort="numParticipants">#PT</th>
+    <th st-sort="numInvited">#Invited</th>
+    <th st-sort="numJoined">#Joined</th>
+    <th st-sort="numJoined">#Signed</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in cards">
+    <td row-select="row" ng-click="select(row.id)" ng-show="!deleted"></td>
+    <td>{{row.id}}</td>
+    <td>
+      <span ng-show="row.updatingFeatured" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      <span ng-hide="row.updatingFeatured">
+        <a href class="fa fa-arrow-up" ng-click="incFeatured(row)" data-toggle="tooltip" title="increase score"></a>
+        <a href editable-number="row.featured"  e-min="0" buttons="no" onaftersave="setFeatured(row)" data-toggle="tooltip" title="click to edit featured value">
+        {{row.featured}}
+        </a>
+        <a href class="fa fa-arrow-down" ng-show="row.featured" ng-click="decFeatured(row)" data-toggle="tooltip" title="decrease score"></a>
+      </span>
+    </td>
+    <td>
+      <a href="#" editable-text="row.title" buttons="no" onaftersave="updateCardTitle(row)" data-toggle="tooltip" title="click to edit card title">
+        {{row.title}}
+      </a>
+    </td>
+    <td>{{row.category.slice(0,2).toUpperCase()}}</td>
+    <td>{{row.status.slice(0,2).toUpperCase()}}</td>
+    <td>{{row.username}}</td>
+    <td>
+
+      <i class="fa fa-times" ng-show="!row.campaign_user"></i>
+      <i class="fa fa-check" ng-show="row.campaign_user" style="color:green"></i>
+
+    </td>
+    <td>
+      <a href="#" editable-text="row.label" buttons="no" onaftersave="updateCardLabel(row)" data-toggle="tooltip" title="click to edit card label">
+        {{row.label || 'no label'}}
+      </a>
+    </td>
+    <td>{{row.type_name.slice(0,2).toUpperCase()}}</td>
+    <td>{{row.createdAt | date}}</td>
+    <td>{{row.dueDate | date}}</td>
+    <td>
+      <a href ng-click="showParticipants(row, 'participants')" data-toggle="tooltip" title="view all participants">
+        {{row.numParticipants}}
+      </a>
+    </td>
+    <td>
+      <a href ng-click="showParticipants(row, 'invited')" data-toggle="tooltip" title="view invited participants">
+        {{row.numInvited}}
+      </a>
+    </td>
+    <td>
+      <a href ng-click="showParticipants(row, 'joined')" data-toggle="tooltip" title="view joined participants">
+        {{row.numJoined}}
+      </a>
+    </td>
+    <td>
+      <a href ng-click="showParticipants(row, 'signed')" data-toggle="tooltip" title="view signed participants">
+        {{row.numSigned || 0}}
+      </a>
+    </td>
+  </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="12" class="text-center">
+        <div st-pagination="" st-items-by-page="numRows" st-displayed-pages="10"></div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+</div>

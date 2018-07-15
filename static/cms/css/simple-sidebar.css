@@ -1,0 +1,325 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+ body {
+    overflow-x: hidden;
+ }
+
+/* Toggle Styles */
+.st-sort-ascent:before{
+  content: '\25B2';
+}
+
+.editable-hide{
+    visibility: hidden;
+}
+
+.st-sort-descent:before{
+  content: '\25BC';
+}
+
+#wrapper {
+    padding-left: 0;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #000;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: absolute;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: absolute;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+}
+
+.sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999999;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(255,255,255,0.2);
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+}
+
+.sidebar-nav > .sidebar-brand a {
+    color: #999999;
+}
+
+.sidebar-nav > .sidebar-brand a:hover {
+    color: #fff;
+    background: none;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 250px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 250px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    display: inline-block;
+    width: 100%;
+}
+
+td i {
+    text-align:center;
+}
+
+
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.login-title
+{
+    margin-top: 40%;
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+
+.topnav-button { margin-top: 8px; }
+.sidebar-and-content { margin-top: 50px; }
+
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+#tableHeader {
+    width: 100%;
+}
+
+.table-container {
+    width: 100%;
+    white-space: nowrap;
+    font-size: small;
+    align-items: stretch;
+}
+
+.table-condensed > tbody > tr > td {
+    padding: 2px;
+}
+
+#create-user {
+    margin-top: 20px;
+}
+
+#due-date {
+    margin-top: 8px;
+}
+
+#filters {
+    margin-right: 8px;
+}
+
+#rows-per-page {
+    margin-top: 8px;
+}
+
+.panel-header-rows {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    padding-top: 15px
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.h-30 {
+    height: 30px;
+}
+
+.p-5 {
+    padding-bottom: 0px;
+    padding-top: 5px;
+    margin-bottom: 0px;
+}
+
+.equal, .equal > div[class*='col-'] {
+    display: -webkit-flex;
+    display: flex;
+    flex:1 1 auto;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.m-h-324 {
+    max-height: : 324px !important;
+}
+
+.cover-image {
+    height: 324px;
+}
+
+.vertical-middle {
+    vertical-align: middle;
+}
+
+.cropArea {
+    background: #E4E4E4;
+    overflow: hidden;
+    width:500px;
+    height:350px;
+}
+form .progress {
+    line-height: 15px;
+}
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
+
+img-crop{width:100%;display:block}img-crop.fixed-height{height:100%;position:relative;overflow:hidden}img-crop.fixed-height canvas{display:block;position:absolute;top:50%;left:50%}img-crop.full-width{text-align:center}img-crop.full-width canvas{display:inline}img-crop canvas{outline:0;-webkit-tap-highlight-color:rgba(255,255,255,0)}img-crop .loading{width:100%;font-size:16px;font-weight:700;display:-webkit-box;display:-ms-flexbox;display:flex;display:-webkit-flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center;-webkit-align-items:center;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-justify-content:center;color:#fff;background-color:rgba(0,0,0,.75)}img-crop .loading .fixed-height{height:100%;position:absolute}

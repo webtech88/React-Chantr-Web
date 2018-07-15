@@ -1,0 +1,463 @@
+<div id="message" ng-show="serverError">
+  <div style="padding: 5px;">
+    <div id="inner-message" class="alert alert-danger">
+      <button type="button" class="close" ng-click="hideAlert()">&times;</button>
+        {{errorMessage}}
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="row equal m-h-324">
+
+    <div class="col-md-7">
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Details</div>
+        <div class="panel-body">
+          <ul class="list-group">
+
+            <li class="list-group-item">
+              <div class="row">
+
+                <div class="col-md-2 text-bold">
+                  Title:
+                </div>
+                <div class="col-md-5">
+                  <a href="#" editable-text="cardDetails.title" buttons="no" onaftersave="updateCardTitle(cardDetails)" data-toggle="tooltip" tooltip="click to edit card title">
+                  {{cardDetails.title}}
+                  </a>
+                </div>
+
+                <div class="col-md-2 text-bold text-right">
+                  Status:
+                </div>
+                <div class="col-md-2">
+                  {{cardDetails.status}}
+                </div>
+
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-2 text-bold">
+                  Total:
+                </div>
+                <div class="col-md-1">
+                  {{cardDetails.numParticipants}}
+                </div>
+
+                <div class="col-md-3 text-bold text-right">
+                  Invited:
+                </div>
+                <div class="col-md-1">
+                  {{cardDetails.numInvited}}
+                </div>
+
+                <div class="col-md-3 text-bold text-right">
+                  Joined:
+                </div>
+                <div class="col-md-1">
+                  {{cardDetails.numJoined}}
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-3 text-bold">
+                  Username
+                </div>
+                <div class="col-md-3">
+                  {{cardDetails.username}}
+                </div>
+
+                <div class="col-md-3 text-bold text-right">
+                  Created:
+                </div>
+                <div class="col-md-3">
+                  {{cardDetails.createdAt | date}}
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+
+                <div class="col-md-3 text-bold">
+                  Category:
+                </div>
+                <div class="col-md-3">
+                  {{cardDetails.category}}
+                </div>
+
+                <div class="col-md-3 text-bold text-right">
+                  Featured:
+                </div>
+                <div class="col-md-3">
+                  {{cardDetails.featured}}
+                </div>
+
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-2 text-bold">
+                  Label:
+                </div>
+                <div class="col-md-5">
+                  <a href="#" editable-text="cardDetails.label" buttons="no" onaftersave="updateCardLabel(cardDetails)" data-toggle="tooltip" tooltip="click to edit card label">
+                   {{cardDetails.label || 'no label'}}
+                  </a>
+                </div>
+                <div class="col-md-2 text-bold">
+                  CreatorName:
+                </div>
+                <div class="col-md-2">
+                  <a href="#" editable-text="cardDetails.creator_name" buttons="no" onaftersave="updateCardCreatorName(cardDetails)" data-toggle="tooltip" tooltip="click to edit card label">
+                   {{cardDetails.creator_name || 'not specified'}}
+                  </a>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+
+                <div class="col-md-3 text-bold">
+                  RecipientName:
+                </div>
+                <div class="col-md-3">
+                  <a href editable-text="cardDetails.recipient_name" buttons="no" onaftersave="updateRecipient(cardDetails)" data-toggle="tooltip" tooltip="click to edit recipient name">
+                  {{cardDetails.recipient_name || 'Not Available'}}
+                  </a>
+                </div>
+
+                <div class="col-md-3 text-bold">
+                  RecipientEmail:
+                </div>
+                <div class="col-md-3">
+                  <a href editable-text="cardDetails.recipient_email" buttons="no" onaftersave="updateRecipient(cardDetails)" data-toggle="tooltip" tooltip="click to edit recipient email">
+                  {{cardDetails.recipient_email || 'Not Available'}}
+                  </a>
+                </div>
+
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+
+                <div class="col-md-3 text-bold">
+                  DueDate:
+                </div>
+                <div class="col-md-5">
+                  <p class="input-group">
+                    <input type="text" ng-change="updateCardDueDate(cardDetails)" class="form-control h-30" datepicker-popup="{{dueDateFormat}}" ng-model="cardDetails.dueDate" is-open="openedDueDatePicker" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+                    <span class="input-group-btn">
+                      <button type="button" class="btn btn-default h-30" ng-click="openDueDatePicker($event)">
+                      <i class="glyphicon glyphicon-sm glyphicon-calendar"></i></button>
+                    </span>
+                  </p>
+                </div>
+
+
+              </div>
+            </li>
+
+            <li class="list-group-item">
+              <div class="row">
+
+                <div class="col-md-3 text-bold">
+                  Description:
+                </div>
+                <div class="col-md-8">
+                  <a
+                    href="#"
+                    editable-textarea="cardDetails.description"
+                    e-cols="50"
+                    buttons="yes"
+                    onaftersave="updateCardDescription(cardDetails)"
+                    data-toggle="tooltip"
+                    tooltip="click to edit card description">
+                  {{cardDetails.description || "description" }}
+                  </a>
+                </div>
+
+
+              </div>
+            </li>
+
+            <li class="list-group-item p-5" ng-show="cardDetails.status!=='npublished'">
+              <div class="row">
+                <div class="col-md-6">
+                  <label for="isPrivate">Private:</label>
+                  <div
+                    class="btn-group btn-toggle"
+                    ng-model="cardDetails.isPrivate"
+                    ng-click="togglePrivacy(cardDetails)">
+                    <button
+                      type="button"
+                      class="btn btn-sm"
+                      ng-class="{'btn-success': cardDetails.isPrivate, 'btn-default': !cardDetails.isPrivate}">
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm"
+                      ng-class="{'btn-default': cardDetails.isPrivate, 'btn-success': !cardDetails.isPrivate}">
+                      No
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-md-6" ng-show="cardDetails.isPrivate">
+                  <label for="is_shareable">Shareable:</label>
+                  <div
+                    class="btn-group btn-toggle"
+                    ng-model="cardDetails.is_shareable"
+                    ng-click="toggleShareable(cardDetails)">
+                    <button
+                      type="button"
+                      class="btn btn-sm"
+                      ng-class="{'btn-success': cardDetails.is_shareable, 'btn-default': !cardDetails.is_shareable}">
+                      Yes
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-sm"
+                      ng-class="{'btn-default': cardDetails.is_shareable, 'btn-success': !cardDetails.is_shareable}">
+                      No
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li class="list-group-item p-5">
+              <div class="row">
+                <div class="col-md-9">
+                <chant-audios code="cardDetails.id"></chant-audios>
+                </div>
+                <div class="col-md-3">
+                  <button
+                    type="button"
+                    class="btn btn-primary btn-sm"
+                    tooltip="Click to add card audio"
+                    ng-click="showAudioUploadModal()">
+                    Upload Audio
+                  </button>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+        <!-- List group -->
+      </div>
+    </div>
+
+    <div class="col-md-5">
+      <div class="panel panel-default w-100">
+        <div class="panel-body">
+          <img
+            src="../data/image/{{cardDetails.image}}.jpg"
+            class="img-responsive center-block cover-image"
+            tooltip="Click to change cover image"
+            ng-click="showCoverImageUploadModal()"
+            ng-show="cardDetails.image" />
+
+          <button
+            type="button"
+            class="btn btn-default btn-lg center-block pagination-centered vertical-middle"
+            tooltip="Click to add cover image"
+            ng-click="showCoverImageUploadModal()"
+            ng-show="!cardDetails.image">
+            Add Image
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row panel-header-rows">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-6">
+          <button ng-click="showGiftDetails(cardDetails)" class="btn btn-sm btn-primary">
+            Gift Details
+          </button>
+          <button
+            confirmed-click="deleteGift(cardDetails)"
+            my-confirm-click="This will delete the gift and its associated data/image and all its contributions. Are you sure you want to proceed?"
+            ng-show="cardDetails.gift_id"
+            class="btn btn-sm btn-danger">
+            Delete Gift
+          </button>
+          <button
+            class="btn btn-sm btn-primary"
+            ng-click="publishCard(cardDetails)"
+            ng-hide="cardDetails.status === 'published'">
+            Publish Card
+          </button>
+          <button
+            class="btn btn-sm btn-success"
+            ng-click="sendToRecipient(cardDetails)"
+            ng-show="cardDetails.status === 'published'"
+            >
+            Send Card
+          </button>
+          <a
+            ng-href="#/cards/{{card_id}}/move_signature"
+            class="btn btn-sm btn-warning">
+            Move Signature
+          </a>
+
+          <a
+            href="/api/v3/cards/{{card_id}}/download-all-signatures"
+            class="btn btn-sm btn-primary">
+            Download Signatures
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-4">
+          <button ng-click="inviteAllParticipants(participants)" class="btn btn-sm btn-primary pull-right">
+            Send Pending Invites
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button ng-click="showBulkUploadModal()" class="btn btn-sm btn-primary pull-right">
+            Add Participants
+          </button>
+        </div>
+        <div class="col-md-4">
+          <button confirmed-click="removeParticipants(participants)" my-confirm-click="This will delete all the participants from this card. Are you sure you want to proceed?" class="btn btn-sm btn-danger">
+            Remove All Participants
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    st-table="participants"
+    default-sort-column="id"
+    st-persist="participants"
+    st-pipe="callServer">
+    <div class="row panel-header-rows">
+      <div class="col-md-5">
+        <span id="filters">
+          <b>
+            Filters
+          </b>
+        </span>
+          <span >
+            <st-search-all query="all"> </st-search-all>
+            <st-search-all query="invited"></st-search-all>
+            <st-search-all query="joined"> </st-search-all>
+            <st-search-all query="signed"> </st-search-all>
+            <st-search-all query="contributed"> </st-search-all>
+            <st-search-all query="pendinginvite"> </st-search-all>
+          </span>
+      </div>
+      <div class="col-md-4">
+        Now Showing: <b>{{nowShowing || 'All'}}</b>
+      </div>
+      <div class="text-right col-md-2" id="rows-per-page">
+        <b>#rows per page</b>
+      </div>
+      <div class="col-md-1">
+        <select name="numRows" class="form-control" ng-model="numRows" ng-options="size for size in page_sizes"> </select>
+      </div>
+    </div>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th colspan="8">
+          <input st-search="" class="form-control" placeholder="search by email / name starting with" type="text"/>
+        </th>
+      </tr>
+      <tr>
+        <th st-sort="id">ID</th>
+        <th st-sort="email">Email</th>
+        <th st-sort="name">Name</th>
+        <th st-sort="added_from_cms">Added From CMS</th>
+        <th st-sort="owner">Owner</th>
+        <th st-sort="invited">Invited</th>
+        <th st-sort="joined">Joined</th>
+        <th st-sort="signed">Signed</th>
+        <th st-sort="contributed">Contributed</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="row in participants">
+        <td>{{row.id}}</td>
+        <td>{{ row.email || row.participant_email }}</td>
+        <td>{{row.name || row.participant_username }}</td>
+        <td>
+          <i class="fa fa-times" ng-show="!row.added_from_cms"></i>
+          <i class="fa fa-check" ng-show="row.added_from_cms" style="color:green"></i>
+        </td>
+        <td>
+          <i class="fa fa-times" ng-show="!row.owner"></i>
+          <i class="fa fa-check" ng-show="row.owner" style="color:green"></i>
+        </td>
+        <td>
+          <span ng-show="row.updatingParticipant" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+          <span ng-hide="row.updatingParticipant">
+            <a href class="fa fa-times" data-toggle="tooltip" tooltip="send invite" ng-show="!row.invited" style="color:#b30000" ng-click="inviteParticipant(row)"></a>
+            <i class="fa fa-check" ng-show="row.invited" style="color:green"></i>
+          </span>
+        </td>
+        <td>
+          <i class="fa fa-times" ng-show="!row.joined"></i>
+          <i class="fa fa-check" ng-show="row.joined" style="color:green"></i>
+        </td>
+        <td>
+          <i class="fa fa-times" ng-show="!row.signed"></i>
+          <a
+            href
+            ng-show="row.signed"
+            class="fa fa-fw fa-file-image-o fa-lg"
+            ng-click="showImagePreviewModal(row)"
+            tooltip="Preview Signature">
+          </a>
+          <a
+            href
+            ng-show="row.signed"
+            class="fa fa-fw fa-trash-o fa-lg"
+            ng-click="deleteSignature(row)"
+            tooltip="Delete Signature">
+          </a>
+
+        </td>
+        <td>
+          <i class="fa fa-times" ng-show="!row.contributed"></i>
+          <span ng-show="row.contributed">{{row.contributed}}</span>
+        </td>
+        <td>
+          <a href class="fa fa-trash-o fa-fw fa-lg" data-toggle="tooltip" tooltip="remove participant" ng-click="removeParticipants([row])"></a>
+          <a href class="fa fa-repeat fa-fw fa-lg" data-toggle="tooltip" tooltip="resend invite" ng-click="inviteParticipant(row)"></a>
+        </td>
+      </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="12" class="text-center">
+            <div st-pagination="" st-items-by-page="numRows" st-displayed-pages="10"></div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+</div>

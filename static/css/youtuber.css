@@ -1,0 +1,403 @@
+p {
+  font-family: 'century gothic';
+}
+
+h1, h2, h3 {
+  font-family: 'century gothic';
+}
+.list-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 64px;
+}
+.youtber-landing {
+  margin-top: 128px;
+}
+
+.english, .hindi, .s-c, .pt, .es, .ar, .tc {
+  width: 250px;
+  height: 225px;
+  margin: 17px;
+}
+
+.wishyoo_videos {
+  display: flex;
+  justify-content: center;
+}
+
+.english-image, .hindi-image, .chinesse-image,
+.ar-image, .pt-image, .es-image, .jp-image {
+  width: 248px;
+}
+
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.language-buttons {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: 'century gothic';
+  color: #ff8a15;
+}
+
+.image-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  outline: none;
+}
+
+.youtuber-buttons {
+  background-color: #ff8a15;
+  color: white;
+  border: 2px solid #ff8a15;
+  line-height: 1.5;
+  outline: none;
+  font-family: 'century gothic';
+}
+
+.wishyoo_videos .modal-body, .wishyoo_videos .modal-content {
+  width: 100%;
+}
+
+.agree {
+  margin-right: 25px;
+}
+
+.terms-buttons:hover {
+  cursor: pointer;
+}
+
+.birthdate {
+  display: inline-block;
+}
+
+.date::-webkit-input-placeholder {
+  font-size: 20px;
+  line-height: 3;
+}
+
+.divBorder {
+  border-style: groove;
+  margin-bottom: 20px;
+}
+
+.validation-error {
+  color:red;
+  font-weight: 700;
+  margin-left: 15px;
+}
+
+.next {
+  margin-top: 70px !important;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user input, .password input, .email input, .birthdate input {
+  border-radius: 0px !important;
+  border-left-color: #ea8825 !important;
+  border-color: white;
+}
+
+.bank {
+  width: 100%;
+}
+
+.previous {
+  color: white;
+  background-color: #f48e00;
+  font-family: 'century gothic';
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+  border: none;
+  width: 100%;
+}
+
+.previous:hover {
+  background-color: #FF8A15;
+}
+
+#done {
+  width: 100% !important;
+}
+
+#returnBack {
+  width: 80% !important;
+}
+
+.or {
+  margin-top: 40px;
+  font-family: 'century gothic';
+}
+
+.paypal, .bank_account, .prepaid_card {
+  color: white;
+  background-color: #f48e00;
+  cursor: pointer;
+  width: 182px;
+  height: 50px;
+  text-align: center;
+}
+
+.paypal p, .bank_account p, .prepaid_card p{
+  font-family: Century Gothic;
+  font-size: 20px;
+}
+
+.paypal:hover, .bank_account:hover, .prepaid_card:hover {
+    background-color: #FF8A15;
+}
+
+.buttonParagraph {
+  margin-top: -15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.paymentImage {
+  width: 182px;
+  height: 184px;
+}
+
+.paymentImage img {
+  height: 130px;
+  margin-top: 30px;
+}
+
+.payment {
+  text-decoration: none;
+}
+
+.success {
+  font-family: Century Gothic;
+  font-size: 28px;
+  color: #f48e00;
+}
+
+.finishButton {
+  margin-top: 30px;
+  text-align: -webkit-center;
+}
+
+.button {
+  margin: 0;
+  border: 0;
+  color: #fff;
+  background-color: #ea8825;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 300;
+  width: 100px;
+}
+
+.button p {
+  margin: 0px;
+}
+
+.termsActions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.termsButtons {
+  margin: 0;
+  border: 0;
+  color: #fff;
+  background-color: #ea8825;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: 300;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.termsButtons:hover, .finish:hover {
+  background-color: #FF8A15;
+}
+
+.Select-control, .Select-menu-outer {
+  border-color: #ea8825;
+}
+
+.agree-buttons {
+  margin-bottom: 50px;
+}
+.acc-options-img {
+  text-align: -webkit-center;
+}
+
+.gif-loader {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #ff8a15;
+}
+
+.birthday {
+  height: 100vh;
+  padding-top: 128px;
+}
+.terms-conditions {
+  padding-bottom: 64px;
+  padding-top: 128px;
+}
+
+.logout:hover {
+  color: #FF8A15;
+}
+
+.youtuber-head {
+  color: red;
+  font-family: 'Gloria Hallelujah';
+  font-size: 36px;
+  line-height: 1.5;
+}
+.card-create-intro {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.cancel-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.cancel-btn-text {
+  background: none;
+  border: thin solid #ff8a15;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 0px;
+  color: #FF8A14;
+  cursor: pointer;
+  font-size: small;
+  outline: none;
+}
+
+@media only screen and (max-width: 645px ) {
+  .iframe-video {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-height: 768px ) {
+  .birthday {
+    height: auto;
+    padding-top: 128px;
+    padding-bottom:64px;
+  }
+
+  .youtuber-footer {
+    margin-top: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .treeImage {
+    margin-left: 0px;
+    width: 200px;
+    margin-top: 50px;
+  }
+
+  .arrow {
+    margin-left: 0px;
+  }
+  .birthday {
+    height: auto;
+    padding-bottom:64px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .treeImage {
+    width: 200px;
+    margin-left: -100px;
+    margin-top: 50px;
+  }
+
+  .button {
+    float: right;
+    margin-right: 13px;
+    margin-top: -100px;
+    position: relative;
+  }
+
+  .button p {
+    margin: 0px;
+  }
+
+  .arrow {
+    margin-left: -200px;
+  }
+
+}
+
+@media (max-width: 768px) {
+  .languages {
+    margin-bottom: 20px;
+    width: 200px;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 1103px) {
+  .birthdate {
+    display: block;
+    margin-bottom: 20px;
+    float: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .languages {
+    float: left;
+    position: absolute;
+    width: 200px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 960px) {
+  .birthday {
+    margin-top: 64px;
+  }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1070px) {
+  .birthday {
+    margin-top: 64px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 992px) {
+  .bank_payment {
+    height:auto;
+    margin-bottom: 64px;
+  }
+  .bank-youtuber-footer {
+    margin-top: 0px;
+  }
+
+  .arrow {
+    margin-left: 0px;
+  }
+}
+
+@media (max-width: 991px) {
+  .terms {
+    margin: 20px;
+  }
+}

@@ -1,0 +1,126 @@
+<form role="form" name="form.cardForm" ng-submit="createCard()" novalidate>
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" ng-model="newCard.title" name="title" class="form-control" id="title" required>
+      <p ng-show="form.cardForm.title.$invalid && !form.cardForm.title.$pristine" class="text-danger">Title is mandatory.</p>
+    </div>
+
+    <div class="form-group">
+      <label for="label">Label:</label>
+      <input type="text" ng-model="newCard.label" name="label" class="form-control" id="label">
+      <p ng-show="form.cardForm.label.$invalid && !form.cardForm.label.$pristine" class="text-danger">Enter a valid label</p>
+    </div>
+
+    <div class="form-group">
+      <label for="category">Category:</label>
+      <select name="category" class="form-control" ng-model="newCard.category" ng-options="category_name for category_name in categories"> </select>
+    </div>
+
+    <div class="form-group">
+      <label for="featured">Featured:</label>
+      <input
+        ng-model="newCard.featured"
+        name="featured"
+        class="form-control"
+        id="featured"
+        type="number"
+        min="0">
+      <p ng-show="form.cardForm.featured.$invalid && !form.cardForm.featured.$pristine" class="text-danger">Enter a valid number greater than or equal to zero</p>
+    </div>
+
+    <div class="form-group">
+      <label for="label">Recipient Name:</label>
+      <input
+        type="text"
+        ng-model="newCard.recipient_name"
+        name="recipient_name"
+        class="form-control"
+        id="recipient_name"
+        required>
+      <p ng-show="form.cardForm.recipient_name.$invalid && !form.cardForm.recipient_name.$pristine" class="text-danger">Recipient name is mandatory</p>
+    </div>
+
+    <div class="form-group">
+      <label for="label">Recipient Email:</label>
+      <input
+        type="email"
+        ng-model="newCard.recipient_email"
+        name="recipient_email"
+        class="form-control"
+        id="recipient_email"
+        required>
+      <p ng-show="form.cardForm.recipient_email.$invalid && !form.cardForm.recipient_email.$pristine" class="text-danger">Enter a valid email id</p>
+    </div>
+
+    <div class="form-group">
+      <label for="isPrivate">Private:</label>
+      <div
+        class="btn-group btn-toggle"
+        ng-init="newCard.isPrivate=false"
+        ng-click="newCard.isPrivate = !newCard.isPrivate">
+        <button
+          type="button"
+          class="btn btn-sm"
+          ng-class="{'btn-success': newCard.isPrivate, 'btn-default': !newCard.isPrivate}">
+          Yes
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm"
+          ng-class="{'btn-default': newCard.isPrivate, 'btn-success': !newCard.isPrivate}">
+          No
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group" ng-show="newCard.isPrivate">
+      <label for="is_shareable">Shareable:</label>
+      <div
+        class="btn-group btn-toggle"
+        ng-init="newCard.is_shareable=true"
+        ng-click="newCard.is_shareable = !newCard.is_shareable">
+        <button
+          type="button"
+          class="btn btn-sm"
+          ng-class="{'btn-success': newCard.is_shareable, 'btn-default': !newCard.is_shareable}">
+          Yes
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm"
+          ng-class="{'btn-default': newCard.is_shareable, 'btn-success': !newCard.is_shareable}">
+          No
+        </button>
+      </div>
+    </div>
+<!--
+    <div class="form-group">
+      <label for="text_only">Text Only:</label>
+      <div
+        class="btn-group btn-toggle"
+        ng-init="newCard.text_only=true"
+        ng-click="newCard.text_only = !newCard.text_only">
+        <button
+          type="button"
+          class="btn btn-sm"
+          ng-class="{'btn-success': newCard.text_only, 'btn-default': !newCard.text_only}">
+          Yes
+        </button>
+        <button
+          type="button"
+          class="btn btn-sm"
+          ng-class="{'btn-default': newCard.text_only, 'btn-success': !newCard.text_only}">
+          No
+        </button>
+      </div>
+    </div>
+
+ -->
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.cardForm.$invalid">Create</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+</form>

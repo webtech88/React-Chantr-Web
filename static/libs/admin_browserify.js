@@ -1,0 +1,10 @@
+window.jQuery = window.$ = require('jquery');
+window._ = require('lodash');
+require('angular');
+require('angular-route');
+require('angular-bootstrap');
+require('bootstrap');
+require('angular-smart-table');
+require('angular-smart-table-improved');
+require('angular-xeditable');
+require('ng-file-upload');

@@ -1,0 +1,97 @@
+
+<div id="message" ng-show="serverError">
+  <div style="padding: 5px;">
+    <div id="inner-message" class="alert alert-danger">
+      <button type="button" class="close" ng-click="hideAlert()">&times;</button>
+        {{errorMessage}}
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="row">
+
+    <div class="col-md-4">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Stats</div>
+        <div class="panel-body">
+
+          <span>
+          <b>From Date:</b>
+            <p class="input-group">
+              <input type="text" ng-change="fetchStats()" class="form-control" datepicker-popup="{{dueDateFormat}}" ng-model="fromDate" is-open="openedDueDatePickerFrom" min-date="minDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDueDatePickerFrom($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+
+          </span>
+
+          <span>
+          <b>To Date:</b>
+            <p class="input-group">
+              <input type="text" ng-change="fetchStats()" class="form-control" datepicker-popup="{{dueDateFormat}}" ng-model="toDate" is-open="openedDueDatePickerTo" min-date="fromDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" close-text="Close" />
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDueDatePickerTo($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+
+          </span>
+
+          <div class="list-group"></div>
+            <a href class="list-group-item">
+              # Total Cards:  <b> {{cardsStats.totalCount}} </b>
+            </a>
+            <a href class="list-group-item">
+              # Cards in Date Range: <b> {{cardsStats.dateRangeCount}} </b>
+            </a>
+            <a href class="list-group-item">
+              # Total Users:  <b> {{userStats.totalCount}} </b>
+            </a>
+            <a href class="list-group-item">
+              # Users in Date Range: <b> {{userStats.dateRangeCount}} </b>
+            </a>
+
+          </div>
+      </div>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+      <div class="panel panel-default">
+
+        <div class="panel-heading">Participants Distribution</div>
+        <div class="panel-body">
+
+          <table st-table="participantDistribution" class="table table-striped" st-safe-src="participantDistributionRows">
+            <thead>
+
+              <tr>
+                <th st-sort="type_name">Campaign Type</th>
+                <th st-sort="added_from_cms">Added From CMS</th>
+                <th st-sort="count">Count</th>
+                <th st-sort="joined">Joined</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="row in participantDistribution">
+              <td>{{row.type_name}}</td>
+              <td>{{row.added_from_cms || false }}</td>
+              <td>{{row.count}}</td>
+              <td>{{row.joined}}</td>
+            </tr>
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

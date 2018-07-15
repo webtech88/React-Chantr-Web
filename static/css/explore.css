@@ -1,0 +1,34 @@
+.explore,
+.about_us,
+.featured_cards{
+  margin-top:  60px;
+}
+
+.explore .feature{
+  display: flex;
+}
+
+.explore .grey-line-short{
+  width: 150px;
+}
+
+
+@media (max-width: 991px){
+  .feature .text-left{
+    text-align: left;
+  }
+  .feature .icon-container {
+    float: left;
+    margin-right: 15px;
+  }
+  .feature .description {
+    text-align: left;
+  }
+  .explore .grey-line-short {
+    float: left !important;
+  }
+  .explore .carousel-inner .item img{
+    /*height: 300px;*/
+    width: 100%;
+  }
+}

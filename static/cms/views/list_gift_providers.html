@@ -1,0 +1,76 @@
+
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2">
+      <input type="text" placeholder="New Provider Name" ng-model="providerName" class="input-sm form-control" id="providerName">
+    </div>
+    <div class="col-md-2">
+      <button ng-click="addGiftCardProvider()" class="btn btn-sm btn-success">
+      <i class="glyphicon glyphicon-plus"> </i> Add Gift Card Provider
+    </div>
+    </button>
+  </div>
+
+<hr />
+
+<div class="row">
+<table st-table="initialRows" class="table table-striped" st-safe-src="gift_card_providers">
+  <thead>
+    <tr>
+      <th class="col-md-2">
+        <input st-search="provider_name" placeholder="search" class="input-sm form-control" type="search"/>
+      </th>
+    </tr>
+
+    <tr>
+      <th st-sort="provider_name" st-sort-default="true">Provider Name</th>
+      <th st-sort="id">ID</th>
+      <th st-sort="id"># Gifts </th>
+      <th st-sort="active">Status</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in initialRows">
+    <td>
+      {{row.provider_name}}
+    </td>
+    <td>{{row.id}}</td>
+    <td>{{row.num_gifts}}</td>
+    <td>
+      <button
+        ng-show="row.active"
+        class="btn btn-sm btn-success"
+        tooltip="deactivate"
+        ng-click="deactivateGiftCardProvider(row)">
+        Active
+      </button>
+      <button
+        ng-show="!row.active"
+        tooltip="activate"
+        class="btn btn-sm btn-danger"
+        ng-click="activateGiftCardProvider(row)">
+        Inactive
+      </button>
+    </td>
+    <td>
+      <a
+        href
+        ng-show="row.image"
+        class="fa fa-fw fa-file-image-o fa-lg"
+        ng-click="showImagePreviewModal(row)"
+        tooltip="View Image">
+      </a>
+      <a
+        href
+        class="fa fa-fw fa-upload fa-lg"
+        ng-click="showImageUploadModal(row)"
+        tooltip="Upload New Image">
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>

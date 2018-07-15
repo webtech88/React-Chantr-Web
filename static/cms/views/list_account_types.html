@@ -1,0 +1,60 @@
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">
+      <input type="text" placeholder="New Type Name" ng-model="typeName" class="input-sm form-control" id="typeName">
+    </div>
+    <div class="col-md-2">
+      <button ng-click="addAccountType()" class="btn btn-sm btn-success">
+      <i class="glyphicon glyphicon-plus"> </i> Add Account Type
+    </button>
+    </div>
+  </div>
+
+<hr />
+
+<div class="row">
+<table st-table="initialRows" class="table table-striped" st-safe-src="account_types">
+  <thead>
+    <tr>
+      <th class="col-md-2">
+        <input st-search="type_name" placeholder="search" class="input-sm form-control" type="search"/>
+      </th>
+    </tr>
+
+    <tr>
+      <th st-sort="type_name" st-sort-default="true">Type Name</th>
+      <th st-sort="id">ID</th>
+      <th st-sort="num_users">#Users</th>
+      <th st-sort="num_cards">#Cards</th>
+      <th st-sort="active">Active</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in initialRows">
+    <td>
+      <a href="#" editable-text="row.type_name" buttons="no" onaftersave="updateAccountTypeName(row)" data-toggle="tooltip" title="click to edit">
+        {{row.type_name}}
+      </a>
+    </td>
+    <td>{{row.id}}</td>
+    <td>{{row.num_users}}</td>
+    <td>{{row.num_cards}}</td>
+    <td id="type-status">{{row.active}}</td>
+    <td ng-if="row.active === true">
+      <button ng-click="deactivateAccountType(row)" class="btn btn-sm btn-danger">
+        Deactivate
+      </button>
+    </td>
+    <td ng-if="row.active === false">
+      <button ng-click="activateAccountType(row)" class="btn btn-sm btn-success">
+        Activate
+      </button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+</div>

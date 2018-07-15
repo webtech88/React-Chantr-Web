@@ -1,0 +1,42 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #595959;
+}
+
+body > div:first-child,
+body > div:first-child > div:first-child,
+body > div:first-child > div:first-child > div:first-child {
+  height: 99.5%;
+}
+
+body > div:first-child,
+body > div:first-child > div:first-child,
+body > div:first-child > div:first-child > div:first-child > div:first-child{
+  height: 99.5%;
+}
+
+body iframe {
+  border: none;
+}
+
+.closeSignBoard {
+  top: 15px;
+  right: 80px;
+  border: none;
+  position: absolute;
+  background-color: transparent;
+  font-size: 28px;
+  color: #FF8A15;
+  font-weight: 100;
+  outline: none;
+}
+
+@media (max-device-width: 769px) and (orientation: portrait){
+  .closeSignBoard {
+    font-size: 60px;
+  }
+}

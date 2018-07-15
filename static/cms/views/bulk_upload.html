@@ -1,0 +1,64 @@
+<form role="form" name="form.bulkUploadForm" ng-submit="uploadParticipantsFile(participantsFile, newParticipants)" novalidate>
+
+  <div class="row">
+    <div class="col-lg-3 col-lg-offset-4 text-center">
+      <h2>Bulk Upload</h2>
+    </div>
+  </div>
+
+  <div class="modal-body">
+    <p>Either upload a CSV File containing email and name(optional) fields. </p>
+    <p>Any emails already existing in the database for this card will be skipped and new ones will be added.</p>
+
+    <div class="form-group">
+      <label class="btn btn-default btn-file">
+        <input type="file" ngf-select ng-model="participantsFile" name="participantsFile"
+               ngf-pattern="'text/csv'" ngf-max-size="10MB" ng-required="!newParticipants"
+               ngf-model-invalid="errorFile" />
+      </label>
+      <a class="fa fa-times" href ng-click="participantsFile = null" ng-show="participantsFile" style="color:#b30000;font-size:1.5em;"> </a>
+    </div>
+
+    <div class="form-group" ng-show="form.bulkUploadForm.participantsFile.$error.pattern">
+      <i class="text-danger">
+        *Invalid File Type. Only 'text/csv' file type is supported
+        <br>
+      </i>
+    </div>
+
+    <div class="form-group" ng-show="form.bulkUploadForm.participantsFile.$error.required">
+      <i class="text-danger">
+        *required
+        <br>
+      </i>
+    </div>
+    <div class="form-group" ng-show="form.bulkUploadForm.participantsFile.$error.maxSize">
+      <i class="text-danger">File too large
+        {{errorFile.size / 1000000|number:1}}MB: max 10MB
+        <br>
+      </i>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-3 col-lg-offset-4 text-center">
+      <h3>Or</h3>
+    </div>
+  </div>
+
+  <div class="modal-body">
+
+    <p>Add the list of emails to the text area below  and submit</p>
+
+    <div class="form-group">
+      <textarea name="newParticipants" ng-model="newParticipants" class="form-control" rows="5" id="addParticipantsForm" ng-required="!participantsFile"></textarea>
+    </div>
+
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.bulkUploadForm.$invalid">Submit</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

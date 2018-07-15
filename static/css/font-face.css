@@ -1,0 +1,51 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Open Sans Light'), local('OpenSans-Light'), url(/static/dist/fonts/opensans-light.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url(/static/dist/fonts/opensans.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url(/static/dist/fonts/opensans-semibold.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url(/static/dist/fonts/opensans-bold.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(/static/dist/fonts/opensans-extrabold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Century Gothic';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Century Gothic'), local('CenturyGothic'), url(/static/dist/fonts/centurygothic.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Jenna Sue';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Jenna Sue'), local('JennaSue'), url(/static/dist/fonts/jenna_sue.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Gloria Hallelujah';
+  font-style: normal;
+  font-weight: 400;
+  src: local('gloria hallelujah'), local('gloriahallelujah'), url(/static/dist/fonts/gloriahallelujah.woff2) format('woff2');
+}

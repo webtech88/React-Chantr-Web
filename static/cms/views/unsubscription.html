@@ -1,0 +1,44 @@
+<form role="form" name="form.unsubscriptionForm" ng-submit="editUnsubscription(row)" novalidate>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label for="email">Email address:</label>
+      <input
+        type="email"
+        ng-model="row.email"
+        name="email"
+        class="form-control"
+        ng-readonly="!row.new"
+        id="email" required>
+      <p ng-show="form.unsubscriptionForm.email.$invalid && !form.unsubscriptionForm.email.$pristine" class="text-danger">Enter a valid email address.</p>
+    </div>
+
+    <div class="form-group">
+      <label ng-repeat="option in allOptions">
+        <input
+          type="checkbox"
+          name="selectedOptions[]"
+          value="{{option}}"
+          ng-checked="selection.indexOf(option) > -1"
+          ng-click="toggleSelection(option)"
+        > {{unsubscribeOptionsMap[option]}}
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="reason">Reason:</label>
+      <select
+        name="reason"
+        class="form-control"
+        ng-model="row.reasonText"
+        ng-options="reason for reason in allReasons">
+      </select>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.unsubscriptionForm.$invalid || form.unsubscriptionForm.$pristine">{{row.new ? 'Add' : 'Update'}}</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

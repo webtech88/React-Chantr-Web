@@ -1,0 +1,84 @@
+<form role="form" name="form.coverImageForm" ng-submit="uploadCoverImage(coverImage)" novalidate>
+
+  <div class="modal-body">
+
+    <div class="form-group">
+
+<!--       <button
+        ngf-select
+        type="button"
+        class="btn btn-default"
+        ng-model="coverImage"
+        name="coverImage"
+        ngf-pattern="'image/*'">
+          Select Picture
+      </button>
+ -->
+
+      <label class="btn btn-default btn-file">
+        <input
+          type="file"
+          id="fileInput"
+          ngf-select
+          ng-model="coverImage"
+          ngf-resize="{
+                        quality: .8,
+                        type: 'image/jpeg',
+                        ratio: '1:1.5',
+                        restoreExif: false,
+                        centerCrop: true
+                      }"
+          name="coverImage"
+          ngf-pattern="'image/*'"
+          ngf-max-size="10MB"
+          ngf-model-invalid="errorFile" />
+      </label>
+
+
+
+      <a class="fa fa-times fa-lg" href ng-click="coverImage = null" ng-show="coverImage"> </a>
+      <div
+        ngf-drop
+        ng-model="coverImage"
+        id="coverImage"
+        ngf-pattern="image/*"
+        class="cropArea">
+          <img-crop
+            image="coverImage  | ngfDataUrl"
+            area-type="square"
+            result-image="croppedDataUrl"
+            ng-init="croppedDataUrl=''">
+          </img-crop>
+      </div>
+      <div>
+        {{croppedDataUrl}}
+        <img ng-src="{{croppedDataUrl}}" />
+      </div>
+    </div>
+    <div class="form-group" ng-show="form.coverImageForm.coverImage.$error.pattern">
+      <i class="text-danger">
+        *Invalid File Type. Only 'image' file type is supported
+        <br>
+      </i>
+    </div>
+
+    <div class="form-group" ng-show="form.coverImageForm.coverImage.$error.required">
+      <i class="text-danger">
+        *required
+        <br>
+      </i>
+    </div>
+    <div class="form-group" ng-show="form.coverImageForm.coverImage.$error.maxSize">
+      <i class="text-danger">File too large
+        {{errorFile.size / 1000000|number:1}}MB: max 10MB
+        <br>
+      </i>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" ng-disabled="form.coverImageForm.$invalid">Submit</button>
+    <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+  </div>
+
+</form>

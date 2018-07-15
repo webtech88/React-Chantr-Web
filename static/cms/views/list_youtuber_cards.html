@@ -1,0 +1,94 @@
+
+<div id="message" ng-show="serverError">
+  <div style="padding: 5px;">
+    <div id="inner-message" class="alert alert-danger">
+      <button type="button" class="close" ng-click="hideAlert()">&times;</button>
+        {{errorMessage}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+<table st-table="initialRows" class="table table-striped" st-safe-src="youtuberCards">
+  <thead>
+    <tr>
+      <th class="col-md-2">
+        <input st-search placeholder="search" class="input-sm form-control" type="search"/>
+      </th>
+    </tr>
+
+    <tr>
+      <th st-sort="id">ID</th>
+      <th st-sort="title">Title</th>
+      <th st-sort="status">Sts</th>
+      <th st-sort="username">Username</th>
+      <th st-sort="createdAt">Created At</th>
+      <th st-sort="birthday">Birthday</th>
+      <th st-sort="numJoined">#Joined</th>
+      <th st-sort="numSigned">#Signed</th>
+      <th st-sort="amount">$Amount</th>
+      <th> Status </th>
+      <th> Payment </th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in initialRows">
+    <td>{{row.id}}</td>
+
+    <td>{{row.title}}</td>
+
+    <td>{{row.status.slice(0,2).toUpperCase()}}</td>
+    <td>{{row.username}}</td>
+
+    <td>{{row.createdAt | date}}</td>
+    <td>{{row.birthday | date}}</td>
+
+    <td>
+      <a href ng-click="showParticipants(row, 'joined')" data-toggle="tooltip" title="view joined participants">
+        {{row.numJoined || 0}}
+      </a>
+    </td>
+
+    <td>
+      <a href ng-click="showParticipants(row, 'signed')" data-toggle="tooltip" title="view signed participants">
+        {{row.numSigned || 0}}
+      </a>
+    </td>
+
+    <td>
+      <a href ng-click="showParticipants(row, 'signed')" data-toggle="tooltip" title="view signed participants">
+        $ {{row.amount || 0}}
+      </a>
+    </td>
+
+    <td>
+      <button
+        ng-click="markAsPaid(row)"
+        ng-if="row.paid === false"
+        class="btn btn-sm btn-success">
+        MarkPaid
+      </button>
+      <span ng-if="row.paid">
+        Paid
+      </span>
+    </td>
+
+    <td>
+      <a href="{{row.paypal_link}}"
+        ng-if="row.paid === false"
+        class="btn btn-sm btn-primary"
+        target="blank">
+        Pay
+      </a>
+      <span ng-if="row.paid">
+        Paid
+      </span>
+    </td>
+
+
+
+  </tr>
+  </tbody>
+</table>
+</div>
+

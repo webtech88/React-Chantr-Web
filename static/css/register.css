@@ -1,0 +1,96 @@
+.register_from input{
+  width: 100%;
+  height: 40px;
+  font-size: 14px;
+  border:none;
+  border-bottom: 1px solid #aaa;
+  line-height: 1;
+  padding-top: 20px;
+  outline: none;
+}
+
+.register_from input::-webkit-input-placeholder {
+   color: rgb(49, 49, 49);
+}
+
+.register_from input:-moz-placeholder { /* Firefox 18- */
+   color: rgb(49, 49, 49);
+}
+
+.register_from input::-moz-placeholder {  /* Firefox 19+ */
+   color: rgb(49, 49, 49);
+}
+
+.register_from input:-ms-input-placeholder {
+   color: rgb(49, 49, 49);
+}
+
+.register_from select{
+  width: 100%;
+  border-radius: 0px;
+  -webkit-appearance: none;
+  background-color: white;
+  height: 40px;
+  font-size: 14px;
+  border:none;
+  border-bottom: 1px solid #aaa;
+  line-height: 1;
+  padding-top:20px;
+  outline: none;
+}
+.btn-birthdate{
+  height: 40px;
+  width: 40px;
+  background-color: white;
+  border: 1px solid #aaa;
+  padding: 0px;
+  outline: none;
+}
+.display_flex{
+  display: flex;
+}
+.register-get-birthday{
+  display: flex;
+}
+
+.register-get-birthday .dropdown-menu{
+  padding: 5px;
+  background-color: antiquewhite;
+  /*width: 100%;*/
+  padding-bottom: 15px;
+}
+
+.register-get-birthday ul li{
+  padding: 15px;
+}
+
+.register-get-birthday table{
+  outline: none;
+  width: 100%;
+}
+
+.usersuggetions{
+  text-align: left;
+}
+
+.usersuggetions button{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  color: gray;
+  padding: 0;
+  margin: 0 15px 0 0px;
+  font-size: 12px;
+}
+
+.usersuggetions button:hover{
+  color: #FF8A15;
+}
+
+input:invalid {
+  box-shadow: none;
+  border-bottom : 1px solid red;
+}
+
+input:-webkit-autofill { -webkit-box-shadow:0 0 0 500px white inset; }

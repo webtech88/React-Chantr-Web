@@ -1,0 +1,116 @@
+<div id="message" ng-show="serverError">
+  <div style="padding: 5px;">
+    <div id="inner-message" class="alert alert-danger">
+      <button type="button" class="close" ng-click="hideAlert()">&times;</button>
+        {{errorMessage}}
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-2">
+      <button class="btn btn-sm btn-success" id="create-user" ng-click="showCreateUserModal()">
+      <i class="glyphicon glyphicon-plus"> </i> Create User
+      </button>
+    </div>
+
+    <span class="col-md-2 pull-right">
+      <b>#rows per page</b> <select name="numRows" class="form-control" ng-model="numRows" ng-options="size for size in page_sizes"> </select>
+    </span>
+
+  </div>
+
+<hr />
+
+
+<div class="row">
+
+<table
+  st-table="users.rows"
+  st-pipe="callServer"
+  default-sort-column="username"
+  st-persist="users"
+  class="table table-striped">
+  <thead>
+  <tr>
+    <th colspan="8"><input st-search="" class="form-control" placeholder="search by username / email / label / account type ..." type="text"/></th>
+  </tr>
+  <tr>
+    <th st-sort="id">ID</th>
+    <th st-sort="email">Email</th>
+    <th st-sort="username">Username</th>
+    <th st-sort="type_name">Account Type</th>
+    <th st-sort="numCards">#Cards</th>
+    <th st-sort="activated">Activated</th>
+    <th st-sort="campaign_user">Campaign User</th>
+    <th st-sort="youtuber">Youtuber</th>
+    <th st-sort="isAdmin" ng-show="currentUser.super_admin">Admin User</th>
+    <th st-sort="isBlocked">Blocked</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in users.rows">
+    <td>{{row.id}}</td>
+    <td>{{row.email}}</td>
+    <td>{{row.username}}</td>
+    <td>{{row.type_name}}</td>
+    <td>
+      <a href ng-click="showUserCards(row)" tooltip="view cards">
+        {{row.numCards}}
+      </a>
+    </td>
+    <td>
+      <span ng-show="row.updatingUser" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      <span ng-hide="row.updatingUser">
+        <a href class="fa fa-toggle-on" ng-show="row.activated" ng-click="deactivateUser(row)" tooltip="deactivate"></a>
+        <a href class="fa fa-toggle-off" ng-show="!row.activated" ng-click="activateUser(row)" tooltip="activate"></a>
+      </span>
+    </td>
+    <td>
+      <span ng-show="row.updatingCampaignUser" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      <span ng-hide="row.updatingCampaignUser">
+        <a href class="fa fa-toggle-on" ng-show="row.campaign_user" ng-click="unmarkAsCampaignUser(row)" tooltip="mark this user as non campaign user"></a>
+        <a href class="fa fa-toggle-off" ng-show="!row.campaign_user" ng-click="markAsCampaignUser(row)" tooltip="mark this user as campaign user"></a>
+      </span>
+    </td>
+
+    <td>
+      <i class="fa fa-times" ng-show="!row.youtuber"></i>
+      <i class="fa fa-check" ng-show="row.youtuber" style="color:green"></i>
+    </td>
+    <td ng-show="currentUser.super_admin">
+      <span ng-show="row.updatingAdminStatus" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      <span ng-hide="row.updatingAdminStatus">
+        <a href class="fa fa-toggle-on" ng-show="row.isAdmin" ng-click="revokeAdminAccess(row)" tooltip="revoke admin access of this user"></a>
+        <a href class="fa fa-toggle-off" ng-show="!row.isAdmin" ng-click="grantAdminAccess(row)" tooltip="grant admin access to this user"></a>
+      </span>
+    </td>
+
+    <td>
+      <span ng-show="row.updatingBlocked" class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span>
+      <span ng-hide="row.updatingBlocked">
+        <a href class="fa fa-toggle-on" ng-show="row.isBlocked" ng-click="unblockUser(row)" tooltip="unblock this user"></a>
+        <a href class="fa fa-toggle-off" ng-show="!row.isBlocked" ng-click="blockUser(row)" tooltip="block user"></a>
+      </span>
+    </td>
+
+    <td>
+      <a href class="fa fa-fw fa-edit" ng-click="showEditUserModal(row)" tooltip="click to edit"></a>
+    </td>
+  </tr>
+  </tbody>
+
+  <tfoot>
+    <tr>
+      <td colspan="12" class="text-center">
+        <div st-pagination="" st-items-by-page="numRows" st-displayed-pages="10"></div>
+      </td>
+    </tr>
+  </tfoot>
+</table>
+
+</div>
+</div>

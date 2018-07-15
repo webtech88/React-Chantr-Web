@@ -1,0 +1,12 @@
+<div>
+	<div ng-if="signatures.length > 0" style="display:block;height:800px;width:800px;border:0px solid blue;background-image:url(/static/images/backgrounds/bg_hbd.jpg);background-repeat:repeat;">
+			<div ng-repeat="signature in signatures" ng-init="lastEle($last);" >
+				<div id="{{'signature_' + signature.id}}" class="movable_signature" style="background-colorX:red;position:absolute;display:block;">
+			   		<object ng-if="signature.image" style="pointer-events:none !important;height:100%;width:100%;" class="movable_signature"  ng-init="setSignatureSize(signature, this)" data="{{signature.image}}" type="image/svg+xml"></object>
+			  </div>
+			</div>
+	</div>
+	  <div>{{message}}
+	  </div>
+	  <button class="btn btn-lg btn-primary" ng-click="createMoveList($event)">Save Board</button>
+</div>

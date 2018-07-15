@@ -1,0 +1,4 @@
+# robotstxt.org
+User-agent: *
+Allow: /static/sitemap.xml
+Sitemap: https://wishyoo.com/static/sitemap.xml

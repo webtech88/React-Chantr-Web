@@ -1,0 +1,103 @@
+.usecases {
+  /*margin-left: -30px;*/
+}
+.black_arrow {
+  margin-top: -5px;
+    width: 40px;
+    height: 27px;
+    margin-right: 24px;
+}
+
+.allCases {
+  height: 86vh;
+}
+
+.usecasesFooter {
+  margin-top: -196px;
+}
+
+.usecaseHeading {
+  margin-bottom: 40px
+}
+
+.panel-counter {
+  padding: 5px;
+  font-size: 20px;
+  color: #333;
+  transform-origin: left bottom;
+  transform: rotate(-90deg) translateY(100%);
+}
+
+.accordion {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+}
+
+.accordion:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+}
+
+.accordion._create:after { display: none; }
+
+.accordion__ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 9999px;
+  height: 300px;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.accordion__li {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 300px;
+  float: left;
+  overflow: hidden;
+  box-shadow: 0 0 10px 0 #000;
+  transition: all 0.3s ease-out;
+}
+
+.accordion__img {
+  display: block;
+  cursor: pointer;
+}
+
+@media (max-height: 830px) {
+  .allCases {
+    height: auto;
+  }
+
+  .usecasesFooter {
+    margin-top: 0px;
+  }
+}
+
+.usecaseBack {
+  clear: both;
+  float: left;
+}
+
+.back {
+  padding: 3px 7px !important;
+}
+
+@media (max-width: 992px) {
+  .usecaseBack {
+    padding-bottom: 50px;
+  }
+}
